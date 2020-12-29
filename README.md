@@ -1,7 +1,8 @@
-DisUnity
+DisUnityFF
 =========
 
 An experimental command-line toolset for Unity asset and asset bundle files, mostly designed for extraction.
+This fork contains some custom QoL functionality.
 
 Download
 --------
