@@ -120,7 +120,7 @@ public class AssetBundle extends FileHandler {
     public void save(Path file) throws IOException {
         int bundleHeaderSize = 4;
         int bundleDataSize = 0;
-        int assets = 0;
+        int assets = 1;
         
         Set<Map.Entry<String, ByteBuffer>> entrySet = entries.entrySet();        
         for (Map.Entry<String, ByteBuffer> entry : entrySet) {
@@ -129,11 +129,6 @@ public class AssetBundle extends FileHandler {
 
             // name length + null byte + 2 ints
             bundleHeaderSize += name.length() + 9;
-            
-            // count asset files
-            if (name.equals("mainData") || name.startsWith("level") || name.startsWith("CAB")) {
-                assets++;
-            }
             
             bundleDataSize += align(buffer.limit());
         }
