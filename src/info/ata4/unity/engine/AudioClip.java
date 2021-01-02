@@ -26,9 +26,9 @@ public class AudioClip {
 
     public AudioClip(UnityObject obj) {
         name = obj.getValue("m_Name");
-        audioBuffer = obj.getValue("m_AudioData");
+        this.audioBuffer = obj.getValue("audio data");
         stream = obj.getValue("m_Stream");
-        Integer typeInt = obj.getValue("m_Type");
+        Integer typeInt = 14; //obj.getValue("m_Format"); hardcoded to OGG
         type = AudioType.fromOrdinal(typeInt);
     }
     

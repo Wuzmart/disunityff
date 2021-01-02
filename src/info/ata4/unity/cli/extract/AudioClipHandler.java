@@ -56,8 +56,8 @@ public class AudioClipHandler extends AssetExtractHandler {
         ByteBuffer audioBuffer = audio.audioBuffer;
 
         // load audio buffer from external buffer if stream is set to 2
-        int stream = obj.getValue("m_Stream");
-        if (stream == 2) {
+        Integer stream = obj.getValue("m_Stream");
+        if (stream != null && stream == 2) {
             L.log(Level.FINE, "Audio clip {0} uses external audio data",
                     audio.name);
             int size = audio.audioBuffer.capacity();
