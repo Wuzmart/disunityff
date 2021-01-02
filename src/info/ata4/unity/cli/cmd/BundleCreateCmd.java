@@ -9,6 +9,7 @@
  */
 package info.ata4.unity.cli.cmd;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
@@ -40,6 +41,12 @@ public class BundleCreateCmd extends AssetCommand {
     @Override
     public void processAssetBundle(AssetBundle bundle) throws IOException {
         Path bundleFile = bundle.getSourceFile().toAbsolutePath();
+        Path outPath = bundleFile.resolveSibling("out");
+        File outDir = outPath.toFile();
+        if (!outDir.exists()) {
+            System.out.println("Creating out folder...");
+            outDir.mkdir(); // create out folder if it doesn't exist
+        }
 
         String[] rootList = bundleFile.getParent().toFile().list();
         for (String subPath : rootList) {
@@ -61,8 +68,7 @@ public class BundleCreateCmd extends AssetCommand {
                                 ByteBufferUtils.openReadOnly(entryFile));
                     }
                 }
-                bundle.save(bundleFile.resolveSibling("out")
-                        .resolve(subDir.getFileName())); // save with same name as directory
+                bundle.save(outPath.resolve(subDir.getFileName())); // save with same name as directory
             }
         }
     }
