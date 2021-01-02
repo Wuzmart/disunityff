@@ -44,7 +44,7 @@ public class BundleCreateCmd extends AssetCommand {
         Path outPath = bundleFile.resolveSibling("out");
         File outDir = outPath.toFile();
         if (!outDir.exists()) {
-            System.out.println("Creating out folder...");
+            L.log(Level.INFO, "Creating out folder");
             outDir.mkdir(); // create out folder if it doesn't exist
         }
 
@@ -53,7 +53,7 @@ public class BundleCreateCmd extends AssetCommand {
             Path subDir = bundleFile.resolveSibling(subPath);
             if (subDir.toFile().isDirectory()
                     && !subDir.getFileName().toString().equals("out")) {
-                System.out.println("Packing " + subDir + "...");
+                L.log(Level.INFO, "Packing {0}", subDir);
 
                 String[] list = subDir.toFile().list();
                 Map<String, ByteBuffer> entries = bundle.getEntries();
