@@ -39,7 +39,7 @@ public class BundleCreateCmd extends AssetCommand {
 
     @Override
     public void processAssetBundle(AssetBundle bundle) throws IOException {
-        Path bundleFile = bundle.getSourceFile();
+        Path bundleFile = bundle.getSourceFile().toAbsolutePath();
 
         String[] rootList = bundleFile.getParent().toFile().list();
         for (String subPath : rootList) {
