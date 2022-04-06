@@ -169,6 +169,8 @@ public class AssetExtractor {
                     } catch (Exception ex) {
                         L.log(Level.WARNING, "Can't extract " + path, ex);
                     }
+                } else {
+                	L.log(Level.WARNING, "No handler for " + className + ", skipping");
                 }
             }
         }
